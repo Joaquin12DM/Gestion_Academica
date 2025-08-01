@@ -87,4 +87,6 @@ public class Inscripcion {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+
 }

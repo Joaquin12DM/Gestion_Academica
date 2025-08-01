@@ -9,62 +9,46 @@ import java.util.List;
 
 public class ProfesorService {
 
-    List<Profesor> profesoresPrueba = List.of(
-            new Profesor("Roberto Salazar", "Matemáticas"),
-            new Profesor("Cecilia Ramos", "Física"),
-            new Profesor("Héctor Villanueva", "Química"),
-            new Profesor("Patricia Guzmán", "Lengua y Literatura"),
-            new Profesor("Gustavo Paredes", "Historia"),
-            new Profesor("Lucía Romero", "Biología"),
-            new Profesor("Eduardo Palacios", "Educación Física"),
-            new Profesor("Verónica Silva", "Filosofía"),
-            new Profesor("Raúl Mendoza", "Computación"),
-            new Profesor("Diana Carrillo", "Inglés"),
-            new Profesor("Oscar Delgado", "Economía"),
-            new Profesor("María Fernanda Ruiz", "Arte"),
-            new Profesor("José Miguel Bravo", "Geografía"),
-            new Profesor("Adriana Cárdenas", "Psicología"),
-            new Profesor("Carlos Alberto León", "Música")
-    );
-
-    public void crearProfesoresPrueba(EntityManager em) {
-        crearProfesores(em, profesoresPrueba);
-    }
-
-    public void crearProfesores(EntityManager em, List<Profesor> profesores) {
-
+    //Solo para crear datos de prueba
+    public List<Profesor> crearProfesores(EntityManager em) {
+        List<Profesor> profesores = List.of(
+                new Profesor("Roberto", "Matemáticas"),
+                new Profesor("Cecilia", "Física"),
+                new Profesor("Héctor", "Química"),
+                new Profesor("Patricia", "Lengua y Literatura"),
+                new Profesor("Gustavo", "Historia"),
+                new Profesor("Lucía", "Biología"),
+                new Profesor("Eduardo", "Educación Física"),
+                new Profesor("Verónica", "Filosofía"),
+                new Profesor("Raúl", "Computación"),
+                new Profesor("Diana", "Inglés"),
+                new Profesor("Oscar", "Economía"),
+                new Profesor("Fernanda", "Arte"),
+                new Profesor("Jose", "Geografía"),
+                new Profesor("Adriana", "Psicología"),
+                new Profesor("Alberto", "Música")
+        );
         em.getTransaction().begin();
-
         try {
-            for (Profesor prof : profesores) {
-                em.persist(prof);
+            for (Profesor profesor : profesores) {
+                em.persist(profesor);
             }
-
+            for (int i = 0; i < profesores.size(); i++) {
+                Curso curso = em.find(Curso.class, (long)(i+1));
+                if (curso != null) {
+                    profesores.get(i).getCursos().add(curso);
+                    em.merge(profesores.get(i));
+                }
+            }
             em.getTransaction().commit();
-            System.out.println("Profesores de prueba creados");
-
+            System.out.println("Profesores creados y cursos asignados correctamente");
+            return profesores;
         } catch (Exception e) {
             em.getTransaction().rollback();
-            System.err.println("Error al registrar profesores: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
+            return List.of();
         }
-    }
-
-
-    public void asociarProfesoresACursos(EntityManager em) {
-        em.getTransaction().begin();
-
-        for (int i = 1; i <= 15; i++) {
-            Curso curso = em.find(Curso.class, (long)i);
-            Profesor profesor = em.find(Profesor.class, (long)i);
-            if (curso != null && profesor != null) {
-                curso.setProfesor(profesor);
-
-                em.persist(curso);
-            }
-        }
-        em.getTransaction().commit();
-        System.out.println("Asignación correcta de Profesor con Curso para prueba");
     }
 
 

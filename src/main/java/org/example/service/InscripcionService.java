@@ -16,7 +16,12 @@ public class InscripcionService {
             em.getTransaction().begin();
 
             LocalDate fecha = LocalDate.of(2025, 3, 1);
+            LocalDate fecha2 = LocalDate.of(2025, 6, 1);
             Inscripcion.Estado estado = Inscripcion.Estado.CONFIRMADA;
+            Inscripcion.Estado estado2 = Inscripcion.Estado.PENDIENTE;
+            Inscripcion.Estado estado3 = Inscripcion.Estado.CANCELADA;
+
+
 
             Estudiante estudiante1 = em.find(Estudiante.class, 1L);
             Estudiante estudiante2 = em.find(Estudiante.class, 2L);
@@ -29,18 +34,18 @@ public class InscripcionService {
             Curso curso5 = em.find(Curso.class, 5L);
 
             em.persist(new Inscripcion(fecha, curso1, estado, estudiante1));
-            em.persist(new Inscripcion(fecha, curso2, estado, estudiante1));
-            em.persist(new Inscripcion(fecha, curso3, estado, estudiante1));
+            em.persist(new Inscripcion(fecha, curso2, estado2, estudiante1));
+            em.persist(new Inscripcion(fecha2, curso3, estado3, estudiante1));
             em.persist(new Inscripcion(fecha, curso4, estado, estudiante1));
-            em.persist(new Inscripcion(fecha, curso5, estado, estudiante1));
-            em.persist(new Inscripcion(fecha, curso1, estado, estudiante2));
-            em.persist(new Inscripcion(fecha, curso2, estado, estudiante2));
-            em.persist(new Inscripcion(fecha, curso3, estado, estudiante2));
+            em.persist(new Inscripcion(fecha, curso5, estado2, estudiante1));
+            em.persist(new Inscripcion(fecha, curso1, estado3, estudiante2));
+            em.persist(new Inscripcion(fecha2, curso2, estado, estudiante2));
+            em.persist(new Inscripcion(fecha, curso3, estado3, estudiante2));
             em.persist(new Inscripcion(fecha, curso4, estado, estudiante2));
-            em.persist(new Inscripcion(fecha, curso5, estado, estudiante2));
-            em.persist(new Inscripcion(fecha, curso1, estado, estudiante3));
+            em.persist(new Inscripcion(fecha2, curso5, estado2, estudiante2));
+            em.persist(new Inscripcion(fecha, curso1, estado2, estudiante3));
             em.persist(new Inscripcion(fecha, curso2, estado, estudiante3));
-            em.persist(new Inscripcion(fecha, curso3, estado, estudiante3));
+            em.persist(new Inscripcion(fecha2, curso3, estado3, estudiante3));
             em.persist(new Inscripcion(fecha, curso4, estado, estudiante3));
             em.persist(new Inscripcion(fecha, curso5, estado, estudiante3));
 
