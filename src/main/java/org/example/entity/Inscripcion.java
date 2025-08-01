@@ -23,10 +23,11 @@ public class Inscripcion {
     @JoinColumn(name="curso_id")
     private Curso curso;
 
-    @Column(name="estado",columnDefinition = "VARCHAR")
+    @Enumerated(EnumType.STRING)
+    @Column(name="estado")
     private Estado estado;
     
-     enum Estado{
+    public enum Estado{
         PENDIENTE, CONFIRMADA, CANCELADA
     }
 
@@ -77,5 +78,13 @@ public class Inscripcion {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }

@@ -94,4 +94,8 @@ public class Curso {
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
+
+    public void setProfesor(Profesor profesor) {
+
+    }
 }
