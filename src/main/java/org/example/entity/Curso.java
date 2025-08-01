@@ -41,6 +41,12 @@ public class Curso {
         this.inscripciones = inscripciones;
     }
 
+    public Curso(String nombre, String codigo, int creditos) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.creditos = creditos;
+    }
+
     public Long getId() {
         return id;
     }

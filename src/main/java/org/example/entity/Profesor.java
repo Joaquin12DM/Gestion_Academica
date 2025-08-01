@@ -30,6 +30,11 @@ public class Profesor {
     public Profesor() {
     }
 
+    public Profesor(String nombre, String especialidad) {
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+    }
+
     public Profesor(List<Curso> cursos, String especialidad, String nombre) {
         this.id = id;
         this.cursos = cursos;

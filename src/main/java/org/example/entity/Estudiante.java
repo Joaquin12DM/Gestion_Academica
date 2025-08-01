@@ -28,6 +28,12 @@ public class Estudiante {
     public Estudiante() {
     }
 
+    public Estudiante(String nombre, String email, String matricula) {
+        this.nombre = nombre;
+        this.email = email;
+        this.matricula = matricula;
+    }
+
     public Estudiante(String email, String nombre, String matricula, List<Inscripcion> inscripciones) {
         this.email = email;
         this.nombre = nombre;
